@@ -20,6 +20,86 @@ html {
 	}
 }
 
+.navbar-default {
+	background-color: #171311;
+	border-color: #c60000;
+}
+
+.navbar-default .navbar-brand {
+	color: #969696;
+}
+
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus
+	{
+	color: #dbdbdb;
+}
+
+.navbar-default .navbar-text {
+	color: #969696;
+}
+
+.navbar-default .navbar-nav>li>a {
+	color: #969696;
+}
+
+.navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus
+	{
+	color: #dbdbdb;
+}
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover,
+	.navbar-default .navbar-nav>.active>a:focus {
+	color: #dbdbdb;
+	background-color: #c60000;
+}
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover,
+	.navbar-default .navbar-nav>.open>a:focus {
+	color: #dbdbdb;
+	background-color: #c60000;
+}
+
+.navbar-default .navbar-toggle {
+	border-color: #c60000;
+}
+
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus
+	{
+	background-color: #c60000;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+	background-color: #969696;
+}
+
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+	border-color: #969696;
+}
+
+.navbar-default .navbar-link {
+	color: #969696;
+}
+
+.navbar-default .navbar-link:hover {
+	color: #dbdbdb;
+}
+
+@media ( max-width : 767px) {
+	.navbar-default .navbar-nav .open .dropdown-menu>li>a {
+		color: #969696;
+	}
+	.navbar-default .navbar-nav .open .dropdown-menu>li>a:hover,
+		.navbar-default .navbar-nav .open .dropdown-menu>li>a:focus {
+		color: #dbdbdb;
+	}
+	.navbar-default .navbar-nav .open .dropdown-menu>.active>a,
+		.navbar-default .navbar-nav .open .dropdown-menu>.active>a:hover,
+		.navbar-default .navbar-nav .open .dropdown-menu>.active>a:focus {
+		color: #dbdbdb;
+		background-color: #c60000;
+	}
+}
+
 .home-section {
 	height: 100%;
 	padding-top: 150px;
@@ -33,6 +113,7 @@ html {
 	padding-top: 150px;
 	text-align: center;
 	background: #eee;
+	overflow: auto;
 }
 
 .about-section {
@@ -40,6 +121,7 @@ html {
 	padding-top: 150px;
 	text-align: center;
 	background: #fff;
+	overflow: auto;
 }
 
 .contact-section {
@@ -47,4 +129,53 @@ html {
 	padding-top: 150px;
 	text-align: center;
 	background: #eee;
+	overflow: auto;
+}
+
+/* Share */
+#sharebuttons {
+	margin: 10px auto 0;
+}
+
+#sharebuttons a {
+	float: left;
+	margin: 0 20px;
+}
+
+#sharebuttons a i {
+	opacity: .5;
+	transition: all .2s;
+}
+
+#sharebuttons a:hover i {
+	opacity: 1;
+	box-shadow: 0 0 0 25px white, 0 0 0 30px #171311;
+}
+
+.mf-128.mf-linkedin {
+	background-position: -512px -256px;
+}
+
+.mf-128.mf-linkedin-r {
+	background-position: -512px -384px;
+}
+
+.mf-128.mf-github {
+	background-position: -384px -768px;
+}
+
+.mf-128.mf-github-r {
+	background-position: -384px -896px;
+}
+
+.mf-128 {
+	display: block;
+	width: 128px;
+	height: 128px;
+	border-radius: 64px;
+	background: transparent url(../img/mf-icons-circle128.png) 0 0;
+}
+
+span.glyphicon-home {
+	font-size: 1.3em;
 }
