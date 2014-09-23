@@ -1,6 +1,6 @@
 function retrieveCommitsTable() {
 	var html = '<table class="table text-left">';
-	html += '<thead><tr><th>#</th><th>Push Date</th><th>Repository</th><th>Commit Message</th></tr></thead>';
+	html += '<thead><tr><th>#</th><th>Push Date and Time</th><th>Repository</th><th>Commit Message</th></tr></thead>';
 	html += '<tbody>';
 
 	var counter = 1;
@@ -12,8 +12,10 @@ function retrieveCommitsTable() {
 
 		// Other events include Creation, Watch and so on.
 		if (event.type === "PushEvent" && event.actor.login === "lhsilva") {
-			var eventCreationDate = new Date(event.created_at)
-					.toLocaleDateString();
+			var creationDate = new Date(event.created_at);
+			var eventCreationDate = creationDate.toLocaleDateString();
+			var eventCreationTime = creationDate.toLocaleTimeString();
+
 			var eventRepo = event.repo;
 			var eventRepoName = eventRepo.name;
 			var eventCommit = event.payload.commits[0];
@@ -22,7 +24,8 @@ function retrieveCommitsTable() {
 
 			html += '<tr>';
 			html += '<td>' + counter + '</td>';
-			html += '<td>' + eventCreationDate + '</td>';
+			html += '<td>' + eventCreationDate + ' - ' + eventCreationTime
+					+ '</td>';
 			html += '<td><a href="https://github.com/' + eventRepoName
 					+ '" target="_blank">' + eventRepoName + '</a></td>';
 			html += '<td><a href="https://github.com/lhsilva/homepage/commit/'
