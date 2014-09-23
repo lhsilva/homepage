@@ -124,7 +124,7 @@ html {
 
 .about-section {
 	height: 100%;
-	padding-top: 85px;
+	padding-top: 80px;
 	text-align: center;
 	background: #fff;
 	overflow: auto;
@@ -132,7 +132,7 @@ html {
 
 .work-section {
 	height: 100%;
-	padding-top: 85px;
+	padding-top: 80px;
 	text-align: center;
 	background: #eee;
 	overflow: auto;
@@ -140,7 +140,7 @@ html {
 
 .blog-section {
 	height: 100%;
-	padding-top: 85px;
+	padding-top: 80px;
 	text-align: center;
 	background: #fff;
 	overflow: auto;
@@ -148,13 +148,12 @@ html {
 
 .contact-section {
 	height: 100%;
-	padding-top: 85px;
+	padding-top: 80px;
 	text-align: center;
 	background: #eee;
 	overflow: auto;
 }
 
-/* Share */
 #sharebuttons {
 	margin: 10px auto 0;
 }
