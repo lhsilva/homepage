@@ -84,6 +84,13 @@ html {
 	color: #dbdbdb;
 }
 
+@media ( max-width : 800px) {
+	#commitstable table td:nth-child(3), #commitstable table th:nth-child(3)
+		{
+		display: none;
+	}
+}
+
 @media ( max-width : 767px) {
 	.navbar-default .navbar-nav .open .dropdown-menu>li>a {
 		color: #969696;
@@ -100,17 +107,16 @@ html {
 	}
 }
 
-.home-section {
-	height: 100%;
-	padding-top: 150px;
-	text-align: center;
-	background: #fff;
-	overflow: auto;
+@media ( max-width : 640px) {
+	#commitstable table td:nth-child(2), #commitstable table th:nth-child(2)
+		{
+		display: none;
+	}
 }
 
-.blog-section {
+.home-section {
 	height: 100%;
-	padding-top: 150px;
+	padding-top: 100px;
 	text-align: center;
 	background: #eee;
 	overflow: auto;
@@ -118,7 +124,23 @@ html {
 
 .about-section {
 	height: 100%;
-	padding-top: 150px;
+	padding-top: 85px;
+	text-align: center;
+	background: #fff;
+	overflow: auto;
+}
+
+.work-section {
+	height: 100%;
+	padding-top: 85px;
+	text-align: center;
+	background: #eee;
+	overflow: auto;
+}
+
+.blog-section {
+	height: 100%;
+	padding-top: 85px;
 	text-align: center;
 	background: #fff;
 	overflow: auto;
@@ -126,7 +148,7 @@ html {
 
 .contact-section {
 	height: 100%;
-	padding-top: 150px;
+	padding-top: 85px;
 	text-align: center;
 	background: #eee;
 	overflow: auto;
