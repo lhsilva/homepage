@@ -28,9 +28,9 @@ function retrieveCommitsTable() {
 					+ '</td>';
 			html += '<td><a href="https://github.com/' + eventRepoName
 					+ '" target="_blank">' + eventRepoName + '</a></td>';
-			html += '<td><a href="https://github.com/lhsilva/homepage/commit/'
-					+ eventCommitSha + '" target="_blank">' + eventCommitMsg
-					+ '</a></td>';
+			html += '<td><a href="https://github.com/' + eventRepoName
+					+ '/commit/' + eventCommitSha + '" target="_blank">'
+					+ eventCommitMsg + '</a></td>';
 			html += '</tr>';
 
 			counter++;

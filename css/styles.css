@@ -8,7 +8,14 @@ html {
 	height: 100%;
 }
 
-@media ( min-width :767px) {
+@media ( max-width : 800px) {
+	#commitstable table td:nth-child(3), #commitstable table th:nth-child(3)
+		{
+		display: none;
+	}
+}
+
+@media ( min-width : 720x) {
 	.navbar {
 		padding: 20px 0;
 		-webkit-transition: background .5s ease-in-out, padding .5s ease-in-out;
@@ -17,93 +24,6 @@ html {
 	}
 	.top-nav-collapse {
 		padding: 0;
-	}
-}
-
-.navbar-default {
-	background-color: #171311;
-	border-color: #c60000;
-}
-
-.navbar-default .navbar-brand {
-	color: #969696;
-}
-
-.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus
-	{
-	color: #dbdbdb;
-}
-
-.navbar-default .navbar-text {
-	color: #969696;
-}
-
-.navbar-default .navbar-nav>li>a {
-	color: #969696;
-}
-
-.navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus
-	{
-	color: #dbdbdb;
-}
-
-.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover,
-	.navbar-default .navbar-nav>.active>a:focus {
-	color: #dbdbdb;
-	background-color: #c60000;
-}
-
-.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover,
-	.navbar-default .navbar-nav>.open>a:focus {
-	color: #dbdbdb;
-	background-color: #c60000;
-}
-
-.navbar-default .navbar-toggle {
-	border-color: #c60000;
-}
-
-.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus
-	{
-	background-color: #c60000;
-}
-
-.navbar-default .navbar-toggle .icon-bar {
-	background-color: #969696;
-}
-
-.navbar-default .navbar-collapse, .navbar-default .navbar-form {
-	border-color: #969696;
-}
-
-.navbar-default .navbar-link {
-	color: #969696;
-}
-
-.navbar-default .navbar-link:hover {
-	color: #dbdbdb;
-}
-
-@media ( max-width : 800px) {
-	#commitstable table td:nth-child(3), #commitstable table th:nth-child(3)
-		{
-		display: none;
-	}
-}
-
-@media ( max-width : 767px) {
-	.navbar-default .navbar-nav .open .dropdown-menu>li>a {
-		color: #969696;
-	}
-	.navbar-default .navbar-nav .open .dropdown-menu>li>a:hover,
-		.navbar-default .navbar-nav .open .dropdown-menu>li>a:focus {
-		color: #dbdbdb;
-	}
-	.navbar-default .navbar-nav .open .dropdown-menu>.active>a,
-		.navbar-default .navbar-nav .open .dropdown-menu>.active>a:hover,
-		.navbar-default .navbar-nav .open .dropdown-menu>.active>a:focus {
-		color: #dbdbdb;
-		background-color: #c60000;
 	}
 }
 
@@ -160,7 +80,7 @@ html {
 
 #sharebuttons a {
 	float: left;
-	margin: 0 20px;
+	margin: 0 10px;
 }
 
 #sharebuttons a i {
@@ -170,23 +90,6 @@ html {
 
 #sharebuttons a:hover i {
 	opacity: 1;
-	box-shadow: 0 0 0 25px white, 0 0 0 30px #171311;
-}
-
-.mf-128.mf-linkedin {
-	background-position: -512px -256px;
-}
-
-.mf-128.mf-linkedin-r {
-	background-position: -512px -384px;
-}
-
-.mf-128.mf-github {
-	background-position: -384px -768px;
-}
-
-.mf-128.mf-github-r {
-	background-position: -384px -896px;
 }
 
 .mf-128 {
@@ -197,6 +100,10 @@ html {
 	background: transparent url(../img/mf-icons-circle128.png) 0 0;
 }
 
-span.glyphicon-home {
-	font-size: 1.3em;
+.mf-128.mf-linkedin {
+	background-position: -512px -256px;
+}
+
+.mf-128.mf-github {
+	background-position: -384px -768px;
 }
