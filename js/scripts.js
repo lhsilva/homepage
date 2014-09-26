@@ -37,7 +37,51 @@ function retrieveCommitsTable() {
 		}
 	}
 
+	html += '</tbody>';
+	html += '</table>';
+
 	return html;
+}
+
+function retrieveNewsFeederColumns() {
+	var html = '<div class="row">';
+
+	var articles = retrieveArticles();
+
+	for (var i = 0; i < articles.length; i++) {
+
+		var article = articles[i];
+
+		var articleTitle = article.title;
+		var articleSummary = article.summary;
+		var articleUrl = article.url;
+
+		html += '<div class="col-md-4"><h3><a href="' + articleUrl
+				+ '" target="_blank">' + articleTitle + '</a></h3>';
+		html += '<p class="text-justify">' + articleSummary + '</p></div>';
+
+	}
+
+	html += '</div>';
+	return html;
+
+}
+
+function retrieveArticles() {
+	try {
+		var url = "http://api.feedzilla.com/v1/categories/15/articles/search.json?q=startup&order=date&count=3";
+		var httpRequest = createXMLHttpRequestFor(url);
+		var news = [];
+
+		if (httpRequest.status === 200 && httpRequest.readyState === 4) {
+			news = JSON.parse(httpRequest.responseText);
+		}
+
+		return news.articles;
+	} catch (exception) {
+		return null;
+	}
+
 }
 
 function retrieveLatestEvents() {

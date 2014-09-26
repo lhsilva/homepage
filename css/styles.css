@@ -8,14 +8,7 @@ html {
 	height: 100%;
 }
 
-@media ( max-width : 800px) {
-	#commitstable table td:nth-child(3), #commitstable table th:nth-child(3)
-		{
-		display: none;
-	}
-}
-
-@media ( min-width : 720x) {
+@media ( min-width : 720px) {
 	.navbar {
 		padding: 20px 0;
 		-webkit-transition: background .5s ease-in-out, padding .5s ease-in-out;
@@ -24,6 +17,13 @@ html {
 	}
 	.top-nav-collapse {
 		padding: 0;
+	}
+}
+
+@media ( max-width : 800px) {
+	#commitstable table td:nth-child(3), #commitstable table th:nth-child(3)
+		{
+		display: none;
 	}
 }
 
@@ -37,7 +37,6 @@ html {
 .home-section {
 	height: 100%;
 	padding-top: 100px;
-	text-align: center;
 	background: #eee;
 	overflow: auto;
 }
@@ -45,7 +44,6 @@ html {
 .about-section {
 	height: 100%;
 	padding-top: 80px;
-	text-align: center;
 	background: #fff;
 	overflow: auto;
 }
@@ -53,7 +51,6 @@ html {
 .work-section {
 	height: 100%;
 	padding-top: 80px;
-	text-align: center;
 	background: #eee;
 	overflow: auto;
 }
@@ -61,7 +58,6 @@ html {
 .blog-section {
 	height: 100%;
 	padding-top: 80px;
-	text-align: center;
 	background: #fff;
 	overflow: auto;
 }
@@ -106,4 +102,8 @@ html {
 
 .mf-128.mf-github {
 	background-position: -384px -768px;
+}
+
+.section-title-gap {
+	padding-bottom: 20px;
 }
