@@ -24,31 +24,6 @@ function buildNewsFeeder() {
     return newsFeederHtml;
 }
 
-function retrieveFeedzillaArticles(query, order, count) {
-    var url = "http://api.feedzilla.com/v1/categories/15/articles/search.json?q=startup&order=date&count=3",
-        httpRequest, response;
-
-    if (query && order && count) {
-        url = 'http://api.feedzilla.com/v1/categories/15/articles/search.json?q=' + query + '&order=' + order + '&count=' + count;
-    }
-
-    httpRequest = createXMLHttpRequestFor(url);
-
-    if (httpRequest && httpRequest.status === 200 && httpRequest.readyState === 4) {
-        response = JSON.parse(httpRequest.responseText);
-
-        if (response && response.articles) {
-            return response.articles;
-        }
-    }
-}
-
-function buildArticleColumn(title, summary, url) {
-    if (title && summary && url) {
-        return '<div class="col-md-4"><h3><a href="' + url + '" target="_blank">' + title + '</a></h3>' + '<p class="text-justify">' + summary + '</p></div>';
-    }
-}
-
 function buildCommitsTable() {
     var htmlTable = '<table class="table text-left"><thead><tr><th>#</th><th>Push Date and Time</th><th>Repository</th><th>Commit Message</th></tr></thead><tbody>',
         nrOfCommits = 10,
@@ -72,6 +47,31 @@ function buildCommitsTable() {
     htmlTable += '</tbody></table>';
 
     return htmlTable;
+}
+
+function retrieveFeedzillaArticles(query, order, count) {
+    var url = "http://api.feedzilla.com/v1/categories/15/articles/search.json?q=startup&order=date&count=3",
+        httpRequest, response;
+
+    if (query && order && count) {
+        url = 'http://api.feedzilla.com/v1/categories/15/articles/search.json?q=' + query + '&order=' + order + '&count=' + count;
+    }
+
+    httpRequest = createXMLHttpRequestFor(url);
+
+    if (httpRequest && httpRequest.status === 200 && httpRequest.readyState === 4) {
+        response = JSON.parse(httpRequest.responseText);
+
+        if (response && response.articles) {
+            return response.articles;
+        }
+    }
+}
+
+function buildArticleColumn(title, summary, url) {
+    if (title && summary && url) {
+        return '<div class="col-md-4"><h3><a href="' + url + '" target="_blank">' + title + '</a></h3>' + '<p class="text-justify">' + summary + '</p></div>';
+    }
 }
 
 function createTableRow(event, counter) {

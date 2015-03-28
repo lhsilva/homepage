@@ -54,7 +54,7 @@ html {
     overflow: auto;
 }
 
-.work-section {
+.contributions-section {
     height: 100%;
     padding-top: 80px;
     overflow: auto;
@@ -67,14 +67,14 @@ html {
     -o-background-size: cover;
 }
 
-.blog-section {
+.projects-section {
     height: 100%;
     padding-top: 80px;
     background: #fff;
     overflow: auto;
 }
 
-.contact-section {
+.contacts-section {
     height: 100%;
     padding-top: 80px;
     text-align: center;
