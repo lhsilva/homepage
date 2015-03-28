@@ -60,7 +60,7 @@ function buildCommitsTable() {
 
         // Other events include Creation, Watch and so on.
         if (event && event.type === "PushEvent" && event.actor.login === "lhsilva") {
-            var tableEntry = createTableEntry(event, counter);
+            var tableEntry = createTableRow(event, counter);
 
             if (tableEntry) {
                 htmlTable += tableEntry;
