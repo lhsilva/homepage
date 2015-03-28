@@ -1,112 +1,126 @@
-function retrieveCommitsTable() {
-	var html = '<table class="table text-left">';
-	html += '<thead><tr><th>#</th><th>Push Date and Time</th><th>Repository</th><th>Commit Message</th></tr></thead>';
-	html += '<tbody>';
+function buildNewsFeeder() {
+    var articles, newsFeederHtml, article, articleColumn;
 
-	var counter = 1;
-	var events = retrieveLatestEvents();
+    articles = retrieveFeedzillaArticles('startup', 'date', 3);
 
-	for (var i = 0; i < events.length && counter <= 10; i++) {
+    if (articles) {
+        newsFeederHtml = '<div class="row">';
 
-		var event = events[i];
+        for (var i = 0, n = articles.length; i < n; i++) {
+            article = articles[i];
 
-		// Other events include Creation, Watch and so on.
-		if (event.type === "PushEvent" && event.actor.login === "lhsilva") {
-			var creationDate = new Date(event.created_at);
-			var eventCreationDate = creationDate.toLocaleDateString();
-			var eventCreationTime = creationDate.toLocaleTimeString();
+            if (article && article.title && article.summary && article.url) {
+                articleColumn = buildArticleColumn(article.title, article.summary, article.url);
 
-			var eventRepo = event.repo;
-			var eventRepoName = eventRepo.name;
-			var eventCommit = event.payload.commits[0];
-			var eventCommitSha = eventCommit.sha;
-			var eventCommitMsg = eventCommit.message;
+                if (articleColumn) {
+                    newsFeederHtml += articleColumn;
+                }
+            }
+        }
 
-			html += '<tr>';
-			html += '<td>' + counter + '</td>';
-			html += '<td>' + eventCreationDate + ' - ' + eventCreationTime
-					+ '</td>';
-			html += '<td><a href="https://github.com/' + eventRepoName
-					+ '" target="_blank">' + eventRepoName + '</a></td>';
-			html += '<td><a href="https://github.com/' + eventRepoName
-					+ '/commit/' + eventCommitSha + '" target="_blank">'
-					+ eventCommitMsg + '</a></td>';
-			html += '</tr>';
+        newsFeederHtml += '</div>';
+    }
 
-			counter++;
-		}
-	}
-
-	html += '</tbody>';
-	html += '</table>';
-
-	return html;
+    return newsFeederHtml;
 }
 
-function retrieveNewsFeederColumns() {
-	var html = '<div class="row">';
+function retrieveFeedzillaArticles(query, order, count) {
+    var url = "http://api.feedzilla.com/v1/categories/15/articles/search.json?q=startup&order=date&count=3",
+        httpRequest, response;
 
-	var articles = retrieveArticles();
+    if (query && order && count) {
+        url = 'http://api.feedzilla.com/v1/categories/15/articles/search.json?q=' + query + '&order=' + order + '&count=' + count;
+    }
 
-	for (var i = 0; i < articles.length; i++) {
+    httpRequest = createXMLHttpRequestFor(url);
 
-		var article = articles[i];
+    if (httpRequest && httpRequest.status === 200 && httpRequest.readyState === 4) {
+        response = JSON.parse(httpRequest.responseText);
 
-		var articleTitle = article.title;
-		var articleSummary = article.summary;
-		var articleUrl = article.url;
-
-		html += '<div class="col-md-4"><h3><a href="' + articleUrl
-				+ '" target="_blank">' + articleTitle + '</a></h3>';
-		html += '<p class="text-justify">' + articleSummary + '</p></div>';
-
-	}
-
-	html += '</div>';
-	return html;
-
+        if (response && response.articles) {
+            return response.articles;
+        }
+    }
 }
 
-function retrieveArticles() {
-	try {
-		var url = "http://api.feedzilla.com/v1/categories/15/articles/search.json?q=startup&order=date&count=3";
-		var httpRequest = createXMLHttpRequestFor(url);
-		var news = [];
-
-		if (httpRequest.status === 200 && httpRequest.readyState === 4) {
-			news = JSON.parse(httpRequest.responseText);
-		}
-
-		return news.articles;
-	} catch (exception) {
-		return null;
-	}
-
+function buildArticleColumn(title, summary, url) {
+    if (title && summary && url) {
+        return '<div class="col-md-4"><h3><a href="' + url + '" target="_blank">' + title + '</a></h3>' + '<p class="text-justify">' + summary + '</p></div>';
+    }
 }
 
-function retrieveLatestEvents() {
-	try {
-		var url = "https://api.github.com/users/lhsilva/events/public";
-		var httpRequest = createXMLHttpRequestFor(url);
-		var events = [];
+function buildCommitsTable() {
+    var htmlTable = '<table class="table text-left"><thead><tr><th>#</th><th>Push Date and Time</th><th>Repository</th><th>Commit Message</th></tr></thead><tbody>',
+        nrOfCommits = 10,
+        counter = 1,
+        events = retrieveGithubLatestEvents();
 
-		if (httpRequest.status === 200 && httpRequest.readyState === 4) {
-			events = JSON.parse(httpRequest.responseText);
-		}
+    for (var i = 0, n = events.length; i < n && counter <= nrOfCommits; i++) {
+        var event = events[i];
 
-		return events;
-	} catch (exception) {
-		return null;
-	}
+        // Other events include Creation, Watch and so on.
+        if (event && event.type === "PushEvent" && event.actor.login === "lhsilva") {
+            var tableEntry = createTableEntry(event, counter);
+
+            if (tableEntry) {
+                htmlTable += tableEntry;
+                counter++;
+            }
+        }
+    }
+
+    htmlTable += '</tbody></table>';
+
+    return htmlTable;
 }
 
-/**
- * Does a GET for the specified URL.
- */
+function createTableRow(event, counter) {
+    var creationDate = new Date(event.created_at),
+        eventCreationDate = creationDate.toLocaleDateString(),
+        eventCreationTime = creationDate.toLocaleTimeString(),
+        eventRepo = event.repo,
+        eventRepoName = eventRepo.name,
+        eventCommit = event.payload.commits[0],
+        eventCommitSha = eventCommit.sha,
+        eventCommitMsg = eventCommit.message,
+        htmlTableRow;
+
+    htmlTableRow += '<tr>';
+    htmlTableRow += '<td>' + counter + '</td>';
+    htmlTableRow += '<td>' + eventCreationDate + ' - ' + eventCreationTime + '</td>';
+    htmlTableRow += '<td><a href="https://github.com/' + eventRepoName + '" target="_blank">' + eventRepoName + '</a></td>';
+    htmlTableRow += '<td><a href="https://github.com/' + eventRepoName + '/commit/' + eventCommitSha + '" target="_blank">' + eventCommitMsg + '</a></td>';
+    htmlTableRow += '</tr>';
+
+    return htmlTableRow;
+}
+
+//latest 90 days github public repos events
+function retrieveGithubLatestEvents() {
+
+    var url = "https://api.github.com/users/lhsilva/events/public",
+        httpRequest = createXMLHttpRequestFor(url),
+        events = [];
+
+    if (httpRequest && httpRequest.status === 200 && httpRequest.readyState === 4) {
+        events = JSON.parse(httpRequest.responseText);
+    }
+
+    return events;
+}
+
 function createXMLHttpRequestFor(url) {
-	var httpRequest = new XMLHttpRequest();
-	httpRequest.open("GET", url, false);
-	httpRequest.send(null);
+    var httpRequest;
 
-	return httpRequest;
+    if (url) {
+        try {
+            httpRequest = new XMLHttpRequest();
+            httpRequest.open("GET", url, false);
+            httpRequest.send(null);
+
+            return httpRequest;
+        } catch (ex) {
+            console.log("Error while creating a request to " + url);
+        }
+    }
 }
