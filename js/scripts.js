@@ -88,9 +88,8 @@ var utils = (function () {
             eventCommit = event.payload.commits[0],
             eventCommitSha = eventCommit.sha,
             eventCommitMsg = eventCommit.message,
-            htmlTableRow;
+            htmlTableRow = '<tr>';
 
-        htmlTableRow += '<tr>';
         htmlTableRow += '<td>' + counter + '</td>';
         htmlTableRow += '<td>' + eventCreationDate + ' - ' + eventCreationTime + '</td>';
         htmlTableRow += '<td><a href="https://github.com/' + eventRepoName + '" target="_blank">' + eventRepoName + '</a></td>';
