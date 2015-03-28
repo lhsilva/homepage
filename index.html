@@ -99,7 +99,7 @@
                 </div>
             </div>
         </section>
-        
+
         <!-- Contributions Section -->
         <section id="contributions" class="contributions-section">
             <div class="container">
@@ -116,7 +116,7 @@
                 </div>
             </div>
         </section>
-        
+
         <!-- Contacts Section -->
         <section id="contacts" class="contacts-section">
             <div class="container">
@@ -164,8 +164,8 @@
         <script src="js/scrolling-nav.js"></script>
 
         <script>
-            document.getElementById('news-feeder').innerHTML = buildNewsFeeder();
-            document.getElementById('commits-table').innerHTML = buildCommitsTable();
+            utils.fillNewsFeeder('startup', 'date', 3);
+            utils.fillCommitsTable();
         </script>
 
         <script>
